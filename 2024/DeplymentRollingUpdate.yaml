@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a
+  labels:
+    env: app
+spec:
+  minReadySeconds: 30
+  strategy:
+      rollingUpdate:
+        maxSurge: 1 
+        maxUnavailable: 2
+      type: RollingUpdate
+  replicas: 8
+  selector:
+    matchLabels:
+      owner: Rosh
+  template:
+    metadata:
+      name: deplmentpod
+      labels:
+        owner: Rosh
+    spec:
+      containers:
+        - name: contdepl
+          image: ishankapoorz21/simple-html-application:v3
+
+

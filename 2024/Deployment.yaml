@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appdepl
+  labels:
+    env: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      owner: Rosh
+  template:
+    metadata:
+      name: deplmentpod
+      labels:
+        owner: Rosh
+    spec:
+      containers:
+        - name: contdepl
+          image: ishankapoorz21/simple-html-application:v1

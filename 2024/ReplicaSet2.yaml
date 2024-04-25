@@ -1,0 +1,33 @@
+# Replicaset using Match Expression
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset23                 #should  be lowercase
+spec:
+  selector:
+      matchExpressions:
+        - key: env
+          operator: In
+          values:
+            - preprod
+
+        - key: type
+          operator: In
+          values:
+            - webapp
+
+        - key: type
+          operator: NotIn
+          values:
+            - javaapp
+            - maliciousapp
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        env: preprod
+        type: webapp
+    spec:
+      containers:
+      - name: apache-app-container-ct
+        image: redis

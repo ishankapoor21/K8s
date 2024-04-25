@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc1
+spec:
+  replicas: 2
+  selector:
+    env: prod1
+    type: webapp
+  template:
+    metadata:
+      name: pod1
+      labels:
+        env: prod1
+        type: webapp
+    spec:
+      containers:
+        - name: container1
+          image: nginx
+          

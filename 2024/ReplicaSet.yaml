@@ -1,0 +1,18 @@
+# Replicaset using Match Label
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset1                  #should  be lowercase
+spec:
+  selector:
+    matchLabels:
+      app: redis-app-ct
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: redis-app-ct
+    spec:
+      containers:
+      - name: apache-app-container-ct
+        image: redis
